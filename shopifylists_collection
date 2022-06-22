@@ -1,0 +1,79 @@
+<section class="workout-main">
+    <div class="container-width">
+      <div class="row">
+        {% assign count = 0%}
+        {% for block in section.blocks %}
+        
+        	 {% if count == 0%}<div class="col-sm-8 col-xs-12 workout-left">{% endif %}
+             {% if count == 1%}<div class="workout-main-sub">{% endif %}
+             {% if count == 3%}<div class="col-sm-4 col-xs-12 workout-left">{% endif %}
+			 {% if count >= 4%}<div class="col-sm-6 col-xs-12 workout-left">{% endif %}
+                <div class="workout-sub">
+                    <img src="{{block.settings.collection.featured_image | img_url:'1024x1024'}}">
+                    <div class="workout-content">
+                      <h4>{{block.settings.title}}</h4>
+                      <p>{{block.settings.subtitle}}</p>
+                      <a href="{{block.settings.collection.url}}">Shop Now</a>
+                    </div>
+                  </div>
+              {% if count == 2 %}</div></div>{% endif%}
+			{% if count == 3 %}</div>{% endif%}
+			{% if count >= 4 %}</div>{% endif%}
+              {% assign count = count | plus:1 %}
+               {% endfor%}
+       
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "Collections Lists",
+    "settings": [],
+  	 "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "Collection Lists",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+  		{
+          "type": "text",
+          "id": "title",
+          "label": "Collection"
+        },
+		{
+          "type": "text",
+          "id": "subtitle",
+          "label": "Collection"
+        }
+      ]
+    }
+  	],
+  	 "presets": [
+      {
+        "name": "Collection Lists",
+        "category": "Image",
+  		"blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        }
+      ]
+  		
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
